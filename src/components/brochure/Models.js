@@ -46,9 +46,9 @@ const Models = () => {
 export default Models;
 
 const cars = [
-  { image: "/Giulia.png", label: "Giulia" },
-  { image: "/Stelvio.png", label: "Stelvio" },
-  { image: "/Tonale.png", label: "Tonale" },
-  { image: "/Stelvio-Q.png", label: "Stelvio Quadrifoglio" },
-  { image: "/Giulia-Q.png", label: "Giulia Quadrifoglio" },
+  { image: "/giulia.png", label: "Giulia" },
+  { image: "/stelvio.png", label: "Stelvio" },
+  { image: "/tonale.png", label: "Tonale" },
+  { image: "/stelvio-Q.png", label: "Stelvio Quadrifoglio" },
+  { image: "/giulia-Q.png", label: "Giulia Quadrifoglio" },
 ];
