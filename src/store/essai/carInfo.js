@@ -17,6 +17,8 @@ export const useInfoStore = create((set) => ({
   done: null,
   sec: "",
   map: "",
+  finition: "",
+  updateFinition: (finition) => set(() => ({ finition: finition })),
   updateCivilité: (civilité) => set(() => ({ civilité: civilité })),
   updatePrénom: (prénom) => set(() => ({ prénom: prénom })),
   updateNom: (nom) => set(() => ({ nom: nom })),

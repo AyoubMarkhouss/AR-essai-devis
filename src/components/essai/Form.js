@@ -29,6 +29,8 @@ const Form = () => {
     map,
     label,
     ville,
+    finition,
+    updateFinition,
     updateVille,
     updateCivilité,
     updatePrénom,
@@ -292,6 +294,75 @@ const Form = () => {
                 APPÉL VIDEO
               </option>
             </select>
+            {car === "Tonale" ? (
+              <div className="flex flex-col">
+                <select
+                  name="Finition"
+                  id="Finition"
+                  onChange={(e) => updateFinition(e.target.value)}
+                  className="semi bg-[#F4F4F4] border border-black h-12 pl-3"
+                >
+                  <option className="semi pl-2" value="" hidden>
+                    FINITION*
+                  </option>
+                  <option className="semi" value="Giulia">
+                    EDIZIONE SPECIALE
+                  </option>
+                  <option className="semi" value="Tonale">
+                    SPRINT
+                  </option>
+                  <option className="semi" value="Stelvio">
+                    TI
+                  </option>
+                </select>
+              </div>
+            ) : car === "Stelvio" ? (
+              <div className="flex flex-col">
+                <select
+                  name="Finition"
+                  id="Finition"
+                  onChange={(e) => updateFinition(e.target.value)}
+                  className="semi bg-[#F4F4F4] border border-black h-12 pl-3"
+                >
+                  <option className="semi pl-2" value="" hidden>
+                    FINITION*
+                  </option>
+                  <option className="semi" value="Giulia">
+                    SPRINT
+                  </option>
+                  <option className="semi" value="Tonale">
+                    VELOCE
+                  </option>
+                  <option className="semi" value="Stelvio">
+                    COMPETIZIONE
+                  </option>
+                </select>
+              </div>
+            ) : car === "Giulia" ? (
+              <div className="flex flex-col">
+                <select
+                  name="Finition"
+                  id="Finition"
+                  onChange={(e) => updateFinition(e.target.value)}
+                  className="semi bg-[#F4F4F4] border border-black h-12 pl-3"
+                >
+                  <option className="semi pl-2" value="" hidden>
+                    FINITION*
+                  </option>
+                  <option className="semi" value="Giulia">
+                    SPRINT
+                  </option>
+                  <option className="semi" value="Tonale">
+                    VELOCE
+                  </option>
+                  <option className="semi" value="Stelvio">
+                    COMPETIZIONE
+                  </option>
+                </select>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
 
           <div className="pt-10">

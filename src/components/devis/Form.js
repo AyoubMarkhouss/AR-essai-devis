@@ -29,6 +29,8 @@ const Form = () => {
     map,
     label,
     ville,
+    finition,
+    updateFinition,
     updateVille,
     updateCivilité,
     updatePrénom,
@@ -113,15 +115,22 @@ const Form = () => {
       <div className="col-span-3 md:col-span-2">
         <form
           onSubmit={handleSubmit}
-          action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&amp;orgId=00D8d000009q2y7"
+          // action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&amp;orgId=00D8d000009q2y7"
+          action="https://stellantis-e--leadinteg.sandbox.my.salesforce.com/services/data/v54.0/sobjects/Lead"
           method="POST"
         >
           <input type="hidden" name="oid" value="00D8d000009q2y7" />
-          <input
+          {/* <input
             type="hidden"
             name="recordType"
             id="recordType"
             value="0128d000000DtwF"
+          /> */}
+          <input
+            type="hidden"
+            name="recordType"
+            id="recordType"
+            value="0128d000000DtwGAAS"
           />
           <input
             type="hidden"
@@ -143,8 +152,8 @@ const Form = () => {
           />
           <input
             type="hidden"
-            id="00N8d00000UVYP5"
-            name="00N8d00000UVYP5"
+            id="Ticket_type__c"
+            name="Ticket_type__c"
             value="Demande de Test Drive"
           />
           <input
@@ -172,16 +181,16 @@ const Form = () => {
             />
 
             <input
-              name="first_name"
-              id="first_name"
+              name="FirstName"
+              id="FirstName"
               onChange={(e) => updatePrénom(e.target.value)}
               type="text"
               placeholder="PRÉNOM*"
               className="semi bg-[#F4F4F4] border border-black h-12 pl-2 placeholder:text-black placeholder:pl-2"
             />
             <input
-              name="last_name"
-              id="last_name"
+              name="LastName"
+              id="LastName"
               onChange={(e) => updateNom(e.target.value)}
               type="text"
               placeholder="NOM*"
@@ -189,8 +198,8 @@ const Form = () => {
             />
             <div className="flex flex-col">
               <select
-                name="Civilite"
-                id="Civilite"
+                name="Salutation"
+                id="Salutation"
                 onChange={(e) => updateCivilité(e.target.value)}
                 className="semi bg-[#F4F4F4] border border-black h-12 pl-3"
               >
@@ -209,24 +218,24 @@ const Form = () => {
               </select>
             </div>
             <input
-              name="ville"
-              id="ville"
+              name="City"
+              id="City"
               onChange={(e) => updateVille(e.target.value)}
               type="text"
               placeholder="VILLE"
               className="semi bg-[#F4F4F4] border border-black h-12 pl-2 placeholder:text-black placeholder:pl-2"
             />
             <input
-              name="email"
-              id="email"
+              name="Email"
+              id="Email"
               onChange={(e) => updateEmail(e.target.value)}
               type="email"
               placeholder="E-MAIL*"
               className="semi bg-[#F4F4F4] border border-black h-12 pl-2 placeholder:text-black placeholder:pl-2"
             />
             <input
-              name="mobile"
-              id="mobile"
+              name="MobilePhone"
+              id="MobilePhone"
               onChange={(e) => updateTel(e.target.value)}
               type="tel"
               placeholder="TELEPHONE*"
@@ -292,6 +301,73 @@ const Form = () => {
                 APPÉL VIDEO
               </option>
             </select>
+            {car === "Tonale" ? (
+              <div className="flex flex-col">
+                <select
+                  name="Finition"
+                  id="Finition"
+                  onChange={(e) => updateFinition(e.target.value)}
+                  className="semi bg-[#F4F4F4] border border-black h-12 pl-3"
+                >
+                  <option className="semi pl-2" value="" hidden>
+                    FINITION*
+                  </option>
+                  <option className="semi" value="Giulia">
+                    EDIZIONE SPECIALE
+                  </option>
+                  <option className="semi" value="Tonale">
+                    SPRINT
+                  </option>
+                  <option className="semi" value="Stelvio">
+                    TI
+                  </option>
+                </select>
+              </div>
+            ) : car === "Stelvio" ? (
+              <div className="flex flex-col">
+                <select
+                  name="Finition"
+                  id="Finition"
+                  onChange={(e) => updateFinition(e.target.value)}
+                  className="semi bg-[#F4F4F4] border border-black h-12 pl-3"
+                >
+                  <option className="semi pl-2" value="" hidden>
+                    FINITION*
+                  </option>
+                  <option className="semi" value="Giulia">
+                    SPRINT
+                  </option>
+                  <option className="semi" value="Tonale">
+                    VELOCE
+                  </option>
+                  <option className="semi" value="Stelvio">
+                    COMPETIZIONE
+                  </option>
+                </select>
+              </div>
+            ) : car === "Giulia" ? (
+              <div className="flex flex-col">
+                <select
+                  name="Finition"
+                  id="Finition"
+                  onChange={(e) => updateFinition(e.target.value)}
+                  className="semi bg-[#F4F4F4] border border-black h-12 pl-3"
+                >
+                  <option className="semi pl-2" value="" hidden>
+                    FINITION*
+                  </option>
+                  <option className="semi" value="Giulia">
+                    SPRINT
+                  </option>
+                  <option className="semi" value="Tonale">
+                    VELOCE
+                  </option>
+                  <option className="semi" value="Stelvio">
+                    COMPETIZIONE
+                  </option>
+                </select>
+              </div>
+            ) : ""}
           </div>
 
           <div className="pt-10">
@@ -360,7 +436,6 @@ const Form = () => {
                 les conditions générales et la politique de confidentialité
               </a>
             </div>
-            
           </div>
           <button
             type="submit"
