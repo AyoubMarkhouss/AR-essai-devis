@@ -56,32 +56,33 @@ const Form = () => {
       : fixedData.filter((person) => {
           return person.address.toLowerCase().includes(query.toLowerCase());
         });
-  console.log(query);
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const form = event.target;
+  console.log(car);
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const form = event.target;
 
-    // Create a FormData object from the form
-    const formData = new FormData(form);
+  //   // Create a FormData object from the form
+  //   const formData = new FormData(form);
 
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        mode: "no-cors",
-      });
+  //   try {
+  //     const response = await fetch(form.action, {
+  //       method: form.method,
+  //       body: formData,
+  //       mode: "no-cors",
+  //     });
 
-      if (response.ok || response.type === "opaque") {
-        // alert("Form submitted successfully!");
-        updateDone(true);
-      } else {
-        alert("Form submission failed.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Form submission failed.");
-    }
-  };
+  //     if (response.ok || response.type === "opaque") {
+  //       // alert("Form submitted successfully!");
+  //       updateDone(true);
+  //     } else {
+  //       alert("Form submission failed.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error submitting form:", error);
+  //     alert("Form submission failed.");
+  //   }
+  // };
+
   return (
     <motion.div
       initial={{
@@ -99,10 +100,10 @@ const Form = () => {
       <div className="col-span-3 md:col-span-1 mb-5 md:mb-0">
         <h2>Votre sélection:</h2>
         <h2 className="semi text-lg">
-          {cars.filter((cr) => cr.label === car)[0]?.label}
+          {cars.filter((cr) => cr.value === car)[0]?.label}
         </h2>
         <img
-          src={cars.filter((cr) => cr.label === car)[0]?.image}
+          src={cars.filter((cr) => cr.value === car)[0]?.image}
           className="w-80"
         />
         <button
@@ -114,40 +115,23 @@ const Form = () => {
       </div>
       <div className="col-span-3 md:col-span-2">
         <form
-          onSubmit={handleSubmit}
-          action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&amp;orgId=00D8d000009q2y7"
+          // onSubmit={handleSubmit}
+          action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00D8d000009q2y7"
           method="POST"
         >
+          <input type="hidden" name="retURL" value="" />
           <input type="hidden" name="oid" value="00D8d000009q2y7" />
+          <input type="hidden" name="debug" value="1" />
           <input
             type="hidden"
-            name="recordType"
-            id="recordType"
-            value="0128d000000DtwF"
+            name="debugEmail"
+            value="ayoub.markhouss@gmail.com"
           />
           <input
-            type="hidden"
             id="00N8d00000UVYP7"
             name="00N8d00000UVYP7"
+            type="hidden"
             value="1"
-          />
-          <input
-            type="hidden"
-            id="00N8d00000UVYOu"
-            name="00N8d00000UVYOu"
-            value="83"
-          />
-          <input
-            type="hidden"
-            id="00N8d00000UVYPn"
-            name="00N8d00000UVYPn"
-            value="83-620"
-          />
-          <input
-            type="hidden"
-            id="00N8d00000UVYP5"
-            name="00N8d00000UVYP5"
-            value="Demande de Test Drive"
           />
           <input
             id="lead_source"
@@ -155,22 +139,28 @@ const Form = () => {
             type="hidden"
             value="event_website"
           />
+          <input type="hidden" name="recordType" value="0128d000000DtwF" />
+          <input
+            type="hidden"
+            id="00N8d00000UVYOu"
+            name="00N8d00000UVYOu"
+            value="83"
+            title="Marque d&#39;intérêt"
+          />
+          <input
+            type="hidden"
+            id="00N8d00000UVYP5"
+            name="00N8d00000UVYP5"
+            value="Demande de Test Drive"
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 gap-x-10">
             <input
               type="text"
               hidden
-              id="Model"
-              name="Model"
+              id="00N8d00000UVYPn"
+              name="00N8d00000UVYPn"
               value={car}
               defaultValue={car}
-            />
-            <input
-              type="text"
-              hidden
-              id="Mode"
-              name="Mode"
-              value="Essai"
-              defaultValue="Essai"
             />
 
             <input
@@ -191,8 +181,8 @@ const Form = () => {
             />
             <div className="flex flex-col">
               <select
-                name="Civilite"
-                id="Civilite"
+                name="salutation"
+                id="salutation"
                 onChange={(e) => updateCivilité(e.target.value)}
                 className="semi bg-[#F4F4F4] border border-black h-12 pl-3"
               >
@@ -211,8 +201,8 @@ const Form = () => {
               </select>
             </div>
             <input
-              name="ville"
-              id="ville"
+              name="city"
+              id="city"
               onChange={(e) => updateVille(e.target.value)}
               type="text"
               placeholder="VILLE"
@@ -236,8 +226,8 @@ const Form = () => {
             />
             <div className="relative w-full border">
               <input
-                name="city"
-                id="city"
+                name="Adresse"
+                id="Adresse"
                 onClick={() => setClicked(true)}
                 onChange={(e) => {
                   setQuery(e.target.value);
@@ -294,7 +284,8 @@ const Form = () => {
                 APPÉL VIDEO
               </option>
             </select>
-            {car === "Tonale" ? (
+
+            {car === "Tonale Diesel" ? (
               <div className="flex flex-col">
                 <select
                   name="Finition"
@@ -312,11 +303,11 @@ const Form = () => {
                     SPRINT
                   </option>
                   <option className="semi" value="Stelvio">
-                    TI
+                    TRIBUTO ITALIANO
                   </option>
                 </select>
               </div>
-            ) : car === "Stelvio" ? (
+            ) : car === "83-630" ? (
               <div className="flex flex-col">
                 <select
                   name="Finition"
@@ -338,7 +329,7 @@ const Form = () => {
                   </option>
                 </select>
               </div>
-            ) : car === "Giulia" ? (
+            ) : car === "83-620" ? (
               <div className="flex flex-col">
                 <select
                   name="Finition"
@@ -501,9 +492,17 @@ const Form = () => {
 export default Form;
 
 const cars = [
-  { image: "/giulia.png", label: "Giulia" },
-  { image: "/stelvio.png", label: "Stelvio" },
-  { image: "/tonale.png", label: "Tonale" },
-  { image: "/stelvioqd.png", label: "Stelvio Quadrifoglio" },
-  { image: "/giuliaqd.png", label: "Giulia Quadrifoglio" },
+  { image: "/giulia.png", label: "Giulia", value: "83-620" },
+  { image: "/stelvio.png", label: "Stelvio", value: "83-630" },
+  { image: "/tonale.png", label: "Tonale", value: "Tonale Diesel" },
+  {
+    image: "/stelvioqd.png",
+    label: "Stelvio Quadrifoglio",
+    value: "Stelvio Quadrifoglio",
+  },
+  {
+    image: "/giuliaqd.png",
+    label: "Giulia Quadrifoglio",
+    value: "Giulia Quadrifoglio",
+  },
 ];

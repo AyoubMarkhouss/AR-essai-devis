@@ -56,7 +56,7 @@ const Form = () => {
       : fixedData.filter((person) => {
           return person.address.toLowerCase().includes(query.toLowerCase());
         });
-  console.log(query);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -319,7 +319,7 @@ const Form = () => {
                     SPRINT
                   </option>
                   <option className="semi" value="Stelvio">
-                    TI
+                    TRIBUTO ITALIANO
                   </option>
                 </select>
               </div>

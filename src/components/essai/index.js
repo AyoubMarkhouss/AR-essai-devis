@@ -13,7 +13,7 @@ const Index = () => {
   const { done, map } = useInfoStore();
   const { mapClicked } = mapStore();
   const { car, updateCar } = useCarStore();
-  console.log(car);
+ 
 
   return (
     <div className="relative bg-[#F4F4F4]">
