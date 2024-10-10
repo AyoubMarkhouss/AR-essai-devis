@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { mapStore } from "../../store/essai/map";
 import { useInfoStore } from "../../store/essai/carInfo";
+import { cn } from "../../utils/cn";
 
 const Merci = () => {
   const { mapClicked } = mapStore();
@@ -18,7 +19,10 @@ const Merci = () => {
         top: mapClicked ? "10%" : "100%",
         opacity: mapClicked ? 1 : 0,
       }}
-      className="bg-[#F4F4F4] md:w-fit w-full z-40 md:mx-20 py-20 mt-6 md:mt-0"
+      className={cn(
+        "bg-[#F4F4F4] absolute w-full h-full px-5 md:px-20 py-20 mt-6 md:mt-0",
+        mapClicked ? "z-50" : "-z-50"
+      )}
     >
       <div className="pl-5 md:pl-0">
         <h1 className="semi text-xl md:text-2xl">
