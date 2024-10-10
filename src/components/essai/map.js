@@ -21,7 +21,7 @@ const Map = ({ cityId }) => {
       ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
       : "";
   const Marrakech =
-    cityId <= 8 && cityId >= 7
+    cityId <= 8 || cityId >= 7
       ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
       : "";
   const Agadir =
@@ -43,7 +43,7 @@ const Map = ({ cityId }) => {
       {Number(cityId) === 4 && <CitiesComp city={Rabat} cities={1} />}
       {Number(cityId) === 5 && <CitiesComp city={Tanger} cities={2} />}
       {Number(cityId) === 6 && <CitiesComp city={Jadida} cities={3} />}
-      {Number(cityId) <= 8 && Number(cityId) >= 7 && (
+      {(Number(cityId) <= 8 || Number(cityId) >= 7) && (
         <CitiesComp city={Marrakech} cities={4} />
       )}
       {Number(cityId) === 9 && <CitiesComp city={Agadir} cities={5} />}
