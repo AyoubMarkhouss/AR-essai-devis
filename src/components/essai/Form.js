@@ -10,8 +10,7 @@ const Form = () => {
   const { car, updateCar } = useCarStore();
   const [query, setQuery] = useState("");
   const { mapClicked } = mapStore();
-  const { updateMapClicked } = mapStore();
-
+  const { updateMapClicked } = mapStore();  
   const [clicked, setClicked] = useState("");
 
   const {

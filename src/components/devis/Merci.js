@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { mapStore } from "../../store/devis/map";
 import { useInfoStore } from "../../store/devis/carInfo";
+import { cn } from "../../utils/cn";
 
 const Merci = () => {
   const { mapClicked } = mapStore();
@@ -15,10 +16,13 @@ const Merci = () => {
         opacity: 0,
       }}
       animate={{
-        top: mapClicked ? "5%" : "100%",
+        top: mapClicked ? "10%" : "100%",
         opacity: mapClicked ? 1 : 0,
       }}
-      className="bg-[#F4F4F4] md:w-fit w-full z-40 md:mx-20 py-20 mt-6 md:mt-0"
+      className={cn(
+        "bg-[#F4F4F4] absolute w-full h-full px-5 md:px-20 py-20 mt-6 md:mt-0",
+        mapClicked ? "z-40" : "-z-50"
+      )}
     >
       <div className="pl-5 md:pl-0">
         <h1 className="semi text-xl md:text-2xl">
@@ -54,16 +58,16 @@ const Merci = () => {
           </p>
         </div>
       </div>
-        {/* <div className="flex justify-center items-center">
-          <button className=" bg-[#8f0c25] mt-14 flex items-center justify-center">
-            <a
-              href="https://www.alfaromeo.co.ma/"
-              className="semi h-12 text-white px-7 flex justify-center items-center"
-            >
-              ACCUEIL
-            </a>
-          </button>
-        </div> */}
+      {/* <div className="flex justify-center items-center">
+        <button className=" bg-[#8f0c25] mt-14 flex items-center justify-center">
+          <a
+            href="https://www.alfaromeo.co.ma/"
+            className="semi h-12 text-white px-7 flex justify-center items-center"
+          >
+            ACCUEIL
+          </a>
+        </button>
+      </div> */}
     </motion.div>
   );
 };
