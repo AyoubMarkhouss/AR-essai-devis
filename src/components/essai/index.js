@@ -15,7 +15,9 @@ const Index = () => {
   const { car, updateCar } = useCarStore();
 
   const searchParams = window.location.search;
-  const cityId = searchParams ? searchParams?.split("?cityId=")[1] : 0;
+  const cityId = searchParams
+    ? searchParams?.split("?cityId=")[1]?.split("&")[0]
+    : 0;
   console.log(cityId);
   return (
     <div className="relative bg-[#F4F4F4]">

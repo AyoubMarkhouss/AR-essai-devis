@@ -5,6 +5,7 @@ import { cityInfo } from "../../data/address";
 import { mapStore } from "../../store/devis/map";
 import { cn } from "../../utils/cn";
 const Map = ({ cityId }) => {
+  console.log(cityId);
   const Casablanca =
     cityId <= 3
       ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
