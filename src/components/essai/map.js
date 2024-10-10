@@ -3,7 +3,60 @@ import { motion } from "framer-motion";
 import { useInfoStore } from "../../store/essai/carInfo";
 import { cityInfo } from "../../data/address";
 import { mapStore } from "../../store/essai/map";
-const Map = () => {
+const Map = ({ cityId }) => {
+  const Casablanca =
+    cityId <= 3
+      ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
+      : "";
+  const Rabat =
+    cityId === 4
+      ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
+      : "";
+  const Tanger =
+    cityId === 5
+      ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
+      : "";
+  const Jadida =
+    cityId === 6
+      ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
+      : "";
+  const Marrakech =
+    cityId <= 8 && cityId >= 7
+      ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
+      : "";
+  const Agadir =
+    cityId === 9
+      ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
+      : "";
+  const Oujda =
+    cityId === 10
+      ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
+      : "";
+  const Fes =
+    cityId === 11
+      ? cityInfo[0].sections.filter((gg) => gg.id === Number(cityId))[0]
+      : "";
+  console.log(Casablanca);
+  return (
+    <div>
+      {Number(cityId) <= 3 && <CitiesComp city={Casablanca} cities={0} />}
+      {Number(cityId) === 4 && <CitiesComp city={Rabat} cities={1} />}
+      {Number(cityId) === 5 && <CitiesComp city={Tanger} cities={2} />}
+      {Number(cityId) === 6 && <CitiesComp city={Jadida} cities={3} />}
+      {Number(cityId) <= 8 && Number(cityId) >= 7 && (
+        <CitiesComp city={Marrakech} cities={4} />
+      )}
+      {Number(cityId) === 9 && <CitiesComp city={Agadir} cities={5} />}
+      {Number(cityId) === 10 && <CitiesComp city={Oujda} cities={6} />}
+      {Number(cityId) === 11 && <CitiesComp city={Fes} cities={7} />}
+    </div>
+  );
+};
+
+export default Map;
+
+const CitiesComp = ({ city, cities }) => {
+  console.log(city);
   const {
     address,
 
@@ -24,8 +77,8 @@ const Map = () => {
         opacity: 0,
       }}
       animate={{
-        top: done ? "2%" : "100%",
-        opacity: done ? 1 : 0,
+        top: city ? "2%" : "100%",
+        opacity: city ? 1 : 0,
       }}
       className="relative bg-[#F4F4F4] w-full h-full -z-10 md:z-10 py-3 mt-20"
     >
@@ -33,7 +86,7 @@ const Map = () => {
         SÉLECTIONNEZ UN DE NOS DISTRIBUTEURS
       </p>
       <iframe
-        src={selectedMap === "" ? map : selectedMap}
+        src={city.map}
         className=" w-full h-screen md:h-[40rem]"
         allowfullscreen=""
         loading="lazy"
@@ -44,7 +97,7 @@ const Map = () => {
           {address}
         </p>
         <div className="flex flex-col gap-4">
-          {cityInfo[sec - 1]?.sections.map((bb, ik) => (
+          {cityInfo[cities]?.sections.map((bb, ik) => (
             <div
               onClick={() => {
                 setSelectedMap(bb.map);
@@ -60,12 +113,14 @@ const Map = () => {
                 Services : Business Center | Spécialiste
               </p>
               <p className="pb-3">{bb.address}</p>
-              <button
-                onClick={() => updateMapClicked(true)}
-                className="semi bg-[#292B35] text-white px-4 py-2"
-              >
-                SÉLECTIONNER
-              </button>
+              <a href={`/?cityId=${bb.id}`}>
+                <button
+                  onClick={() => updateMapClicked(true)}
+                  className="semi bg-[#292B35] text-white px-4 py-2"
+                >
+                  SÉLECTIONNER
+                </button>
+              </a>
             </div>
           ))}
         </div>
@@ -73,5 +128,3 @@ const Map = () => {
     </motion.div>
   );
 };
-
-export default Map;

@@ -13,6 +13,7 @@ const Form = () => {
   const { updateMapClicked } = mapStore();
 
   const [clicked, setClicked] = useState("");
+
   const {
     civilité,
     prénom,
@@ -46,9 +47,11 @@ const Form = () => {
     updateProfilage,
     updateDone,
     setSec,
+    updateCityId,
+    cityId,
     setMap,
   } = useInfoStore();
-
+  console.log(address);
   const fixedData = cityInfo.flatMap((items) => items.sections);
   const filteredPeople =
     query === ""
@@ -119,14 +122,18 @@ const Form = () => {
           action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00D8d000009q2y7"
           method="POST"
         >
-          <input type="hidden" name="retURL" value="" />
-          <input type="hidden" name="oid" value="00D8d000009q2y7" />
-          <input type="hidden" name="debug" value="1" />
           <input
+            type="hidden"
+            name="retURL"
+            value={`https://ar-essai-devis-red.vercel.app?cityId=${cityId}`}
+          />
+          <input type="hidden" name="oid" value="00D8d000009q2y7" />
+          {/* <input type="hidden" name="debug" value="1" /> */}
+          {/* <input
             type="hidden"
             name="debugEmail"
             value="ayoub.markhouss@gmail.com"
-          />
+          /> */}
           <input
             id="00N8d00000UVYP7"
             name="00N8d00000UVYP7"
@@ -252,6 +259,7 @@ const Form = () => {
                       <p
                         onClick={() => {
                           setQuery(file.address);
+                          updateCityId(file.id);
                           setClicked(false);
                           updateAddress(file.address);
                           setSec(file.sec);

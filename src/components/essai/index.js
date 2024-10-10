@@ -13,24 +13,26 @@ const Index = () => {
   const { done, map } = useInfoStore();
   const { mapClicked } = mapStore();
   const { car, updateCar } = useCarStore();
- 
 
+  const searchParams = window.location.search;
+  const cityId = searchParams ? searchParams?.split("?cityId=")[1] : 0;
+  console.log(cityId);
   return (
     <div className="relative bg-[#F4F4F4]">
       <div
         className={cn(
           "relative ",
-          done || car === ""
-            ? map !== ""
+          car === ""
+            ? cityId !== ""
               ? "md:h-[120vh] md:overflow-y-clip"
               : "overflow-y-clip overflow-hidden md:h-screen md:max-h-screen "
             : "md:h-[150vh] md:overflow-y-clip"
         )}
       >
         <Steps />
-        {car === "" && <Models />}
-        {!done && <Form />}
-        {!mapClicked && <Map />}
+        {Number(cityId) === 0 && car === "" && <Models />}
+        {Number(cityId) === 0 && <Form />}
+        {Number(cityId) >= 1 && <Map cityId={cityId} />}
         {mapClicked && <Merci />}
       </div>
     </div>
