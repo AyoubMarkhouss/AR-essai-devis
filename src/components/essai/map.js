@@ -127,7 +127,7 @@ const CitiesComp = ({ city, cities, cityId }) => {
                 Services : Business Center | Spécialiste
               </p>
               <p className="pb-3">{bb.address}</p>
-              {bb.id == cityId ? (
+              {bb.id === Number(cityId) ? (
                 <button
                   onClick={() => updateMapClicked(true)}
                   className="semi bg-[#292B35] text-white px-4 py-2"
