@@ -10,19 +10,23 @@ import Map from "./components/essai/map";
 import Merci from "./components/essai/Merci";
 
 function App() {
+  const searchParams = window.location.search;
+  const isDevis = searchParams.includes("devis");
   const { updateStatus, status } = useStatusStore();
   return (
     <div className="relative bg-[#F4F4F4]">
-      
       <div className="flex justify-center max-w-xl mx-auto py-10">
-        
         {statusInfo.map((hi) => (
           <button
             onClick={() => updateStatus(hi.label)}
             key={hi}
             className={cn(
               "semi py-2 w-full cursor-pointer",
-              status === hi.label
+              isDevis
+                ? "Devis" === hi.label
+                  ? "semi text-white bg-[#292B35] border-[#8f0c25] border-2"
+                  : ""
+                : status === hi.label
                 ? "semi text-white bg-[#292B35] border-[#8f0c25] border-2 "
                 : ""
             )}
@@ -40,8 +44,6 @@ function App() {
             </div>
           );
         })}
-        
-       
     </div>
   );
 }
