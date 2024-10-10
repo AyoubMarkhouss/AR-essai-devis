@@ -39,23 +39,37 @@ const Map = ({ cityId }) => {
   console.log(Casablanca);
   return (
     <div>
-      {Number(cityId) <= 3 && <CitiesComp city={Casablanca} cities={0} />}
-      {Number(cityId) === 4 && <CitiesComp city={Rabat} cities={1} />}
-      {Number(cityId) === 5 && <CitiesComp city={Tanger} cities={2} />}
-      {Number(cityId) === 6 && <CitiesComp city={Jadida} cities={3} />}
-      {(Number(cityId) <= 8 || Number(cityId) >= 7) && (
-        <CitiesComp city={Marrakech} cities={4} />
+      {Number(cityId) <= 3 && (
+        <CitiesComp city={Casablanca} cities={0} cityId={cityId} />
       )}
-      {Number(cityId) === 9 && <CitiesComp city={Agadir} cities={5} />}
-      {Number(cityId) === 10 && <CitiesComp city={Oujda} cities={6} />}
-      {Number(cityId) === 11 && <CitiesComp city={Fes} cities={7} />}
+      {Number(cityId) === 4 && (
+        <CitiesComp city={Rabat} cities={1} cityId={cityId} />
+      )}
+      {Number(cityId) === 5 && (
+        <CitiesComp city={Tanger} cities={2} cityId={cityId} />
+      )}
+      {Number(cityId) === 6 && (
+        <CitiesComp city={Jadida} cities={3} cityId={cityId} />
+      )}
+      {(Number(cityId) <= 8 || Number(cityId) >= 7) && (
+        <CitiesComp city={Marrakech} cities={4} cityId={cityId} />
+      )}
+      {Number(cityId) === 9 && (
+        <CitiesComp city={Agadir} cities={5} cityId={cityId} />
+      )}
+      {Number(cityId) === 10 && (
+        <CitiesComp city={Oujda} cities={6} cityId={cityId} />
+      )}
+      {Number(cityId) === 11 && (
+        <CitiesComp city={Fes} cities={7} cityId={cityId} />
+      )}
     </div>
   );
 };
 
 export default Map;
 
-const CitiesComp = ({ city, cities }) => {
+const CitiesComp = ({ city, cities, cityId }) => {
   console.log(city);
   const {
     address,
@@ -113,7 +127,7 @@ const CitiesComp = ({ city, cities }) => {
                 Services : Business Center | Spécialiste
               </p>
               <p className="pb-3">{bb.address}</p>
-              {bb.id === city.id ? (
+              {bb.id == cityId ? (
                 <button
                   onClick={() => updateMapClicked(true)}
                   className="semi bg-[#292B35] text-white px-4 py-2"
