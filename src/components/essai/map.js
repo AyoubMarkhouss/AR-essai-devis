@@ -113,14 +113,20 @@ const CitiesComp = ({ city, cities }) => {
                 Services : Business Center | Spécialiste
               </p>
               <p className="pb-3">{bb.address}</p>
-              <a href={`/?cityId=${bb.id}`}>
+              {bb.id === city.id ? (
                 <button
                   onClick={() => updateMapClicked(true)}
                   className="semi bg-[#292B35] text-white px-4 py-2"
                 >
                   SÉLECTIONNER
                 </button>
-              </a>
+              ) : (
+                <a href={`/?cityId=${bb.id}`}>
+                  <button className="semi bg-[#292B35] text-white px-4 py-2">
+                    SÉLECTIONNER
+                  </button>
+                </a>
+              )}
             </div>
           ))}
         </div>
