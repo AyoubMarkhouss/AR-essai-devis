@@ -303,13 +303,13 @@ const Form = () => {
                   <option className="semi pl-2" value="" hidden>
                     FINITION*
                   </option>
-                  <option className="semi" value="Giulia">
-                    EDIZIONE SPECIALE
+                  <option className="semi" value="VELOCE">
+                    VELOCE
                   </option>
-                  <option className="semi" value="Tonale">
+                  <option className="semi" value="SPRINT">
                     SPRINT
                   </option>
-                  <option className="semi" value="Stelvio">
+                  <option className="semi" value="TRIBUTO_ITALIANO">
                     TRIBUTO ITALIANO
                   </option>
                 </select>
@@ -325,14 +325,14 @@ const Form = () => {
                   <option className="semi pl-2" value="" hidden>
                     FINITION*
                   </option>
-                  <option className="semi" value="Giulia">
+                  <option className="semi" value="SPRINT">
                     SPRINT
                   </option>
-                  <option className="semi" value="Tonale">
+                  <option className="semi" value="VELOCE">
                     VELOCE
                   </option>
-                  <option className="semi" value="Stelvio">
-                    COMPETIZIONE
+                  <option className="semi" value="TRIBUTO_ITALIANO">
+                    TRIBUTO ITALIANO
                   </option>
                 </select>
               </div>
@@ -347,10 +347,10 @@ const Form = () => {
                   <option className="semi pl-2" value="" hidden>
                     FINITION*
                   </option>
-                  <option className="semi" value="Giulia">
+                  <option className="semi" value="SPRINT">
                     SPRINT
                   </option>
-                  <option className="semi" value="Tonale">
+                  <option className="semi" value="VELOCE">
                     VELOCE
                   </option>
                   <option className="semi" value="Stelvio">
@@ -491,7 +491,6 @@ const Form = () => {
             <RiArrowRightSLine size={23} />
           </button>
         </form>
-        
       </div>
     </motion.div>
   );
